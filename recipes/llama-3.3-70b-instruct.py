@@ -76,14 +76,13 @@ def calculate_similarity(translated, reference):
         print(f"Error calculating similarity: {str(e)}")
         return 0.0
 
-def process_dataframe(df, source_lang, target_lang):
-    """Main processing function"""
-    print(f"Translation: NVIDIA Build API | Similarity: Compare with reference")
+def translation_only(df, source_lang, target_lang):
+    """Only perform translation without similarity calculation"""
+    print(f"Translation: NVIDIA Build API")
     print(f"Rate limiting: 38 requests per minute (~1.58 seconds between requests)")
 
     result_df = df.copy()
     result_df['translated'] = ""
-    result_df['similarity_score'] = 0.0
 
     # Calculate delay between requests to achieve 38 requests per minute
     delay_between_requests = 60 / 38  # Approximately 1.58 seconds
@@ -101,12 +100,6 @@ def process_dataframe(df, source_lang, target_lang):
         # Show translation result
         if translation:
             print(f"  → {translation[:50]}...")
-            
-            # Calculate similarity with reference text
-            if 'ref' in row and pd.notna(row['ref']):
-                similarity = calculate_similarity(translation, row['ref'])
-                result_df.at[i, 'similarity_score'] = similarity
-                print(f"  → Similarity with reference: {similarity:.4f}")
         else:
             print("  → [Translation failed]")
         
@@ -117,3 +110,61 @@ def process_dataframe(df, source_lang, target_lang):
 
     print("Translation process completed!")
     return result_df
+
+def similarity_only(df, batch_size=32):
+    """Only calculate similarity between translated text and reference using batch processing"""
+    print("Calculating similarity scores with batch processing...")
+    
+    result_df = df.copy()
+    
+    # Check if 'translated' column exists
+    if 'translated' not in result_df.columns:
+        print("Error: No 'translated' column found in the DataFrame")
+        return result_df
+    
+    # Check if 'ref' column exists
+    if 'ref' not in result_df.columns:
+        print("Error: No 'ref' column found in the DataFrame")
+        return result_df
+    
+    # Prepare data for batch processing
+    translated_texts = result_df['translated'].fillna('').tolist()
+    ref_texts = result_df['ref'].fillna('').tolist()
+    
+    # Calculate similarity in batches
+    similarities = []
+    total_batches = (len(translated_texts) + batch_size - 1) // batch_size
+    
+    for i in range(0, len(translated_texts), batch_size):
+        batch_translated = translated_texts[i:i+batch_size]
+        batch_ref = ref_texts[i:i+batch_size]
+        
+        # Calculate embeddings for both batches
+        embeddings_translated = similarity_model.encode(batch_translated, convert_to_tensor=True)
+        embeddings_ref = similarity_model.encode(batch_ref, convert_to_tensor=True)
+        
+        # Calculate cosine similarities
+        batch_similarities = util.pytorch_cos_sim(embeddings_translated, embeddings_ref)
+        
+        # Extract the diagonal (each translation compared to its corresponding reference)
+        batch_diagonal = batch_similarities.diag().cpu().numpy()
+        similarities.extend(batch_diagonal)
+        
+        # Show progress
+        batch_num = i // batch_size + 1
+        print(f"Processed batch {batch_num}/{total_batches}")
+    
+    result_df['similarity_score'] = similarities
+    
+    print("Similarity calculation completed!")
+    return result_df
+
+def process_dataframe(df, source_lang, target_lang):
+    """Full processing function (translation + similarity)"""
+    # First do translation
+    df = translation_only(df, source_lang, target_lang)
+    
+    # Then calculate similarity
+    df = similarity_only(df)
+    
+    return df
