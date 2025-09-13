@@ -35,7 +35,7 @@ def translate_text_with_nvidia(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="deepseek-ai/deepseek-v3.1",
+                model="openai/gpt-oss-120b",
                 messages=[
                     {
                         "role": "user",
@@ -45,6 +45,7 @@ def translate_text_with_nvidia(text, source_lang, target_lang, max_retries=5):
                 temperature=0.3,
                 top_p=0.95,
                 max_tokens=2024,
+                reasoning_effort="low",
                 stream=False
             )
             

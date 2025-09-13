@@ -1,0 +1,50 @@
+{
+  "gaa-eng/gaa-eng.csv/deepseek-v3.1": {
+    "translation_completed": true
+  },
+  "gaa-eng/gaa-eng.csv/llama-3.3-70b-instruct": {
+    "translation_completed": true
+  },
+  "twi-eng/twi-eng.csv/deepseek-v3.1": {
+    "translation_completed": true
+  },
+  "twi-eng/twi-eng.csv/llama-3.3-70b-instruct": {
+    "translation_completed": true
+  },
+  "nzi-eng/nzi-eng.csv/deepseek-v3.1": {
+    "translation_completed": true
+  },
+  "nzi-eng/nzi-eng.csv/llama-3.3-70b-instruct": {
+    "translation_completed": true
+  },
+  "ewe-eng/ewe-eng.csv/deepseek-v3.1": {
+    "translation_completed": true
+  },
+  "ewe-eng/ewe-eng.csv/llama-3.3-70b-instruct": {
+    "translation_completed": true
+  },
+  "gaa-eng/gaa-eng.csv/gpt-oss-120b": {
+    "translation_completed": true
+  },
+  "gaa-eng/gaa-eng.csv/deepseek-v3.1.py": {
+    "translation_completed": true
+  },
+  "twi-eng/twi-eng.csv/gpt-oss-120b": {
+    "translation_completed": true
+  },
+  "twi-eng/twi-eng.csv/deepseek-v3.1.py": {
+    "translation_completed": true
+  },
+  "nzi-eng/nzi-eng.csv/gpt-oss-120b": {
+    "translation_completed": true
+  },
+  "nzi-eng/nzi-eng.csv/deepseek-v3.1.py": {
+    "translation_completed": true
+  },
+  "ewe-eng/ewe-eng.csv/gpt-oss-120b": {
+    "translation_completed": true
+  },
+  "ewe-eng/ewe-eng.csv/deepseek-v3.1.py": {
+    "translation_completed": true
+  }
+}

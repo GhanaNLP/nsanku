@@ -38,13 +38,26 @@ def load_processing_state(state_file="processing_state.json"):
             with open(state_file, 'r') as f:
                 return json.load(f)
         except:
+            # If file is corrupted, create a new one
+            print("State file corrupted, creating a new one")
+            with open(state_file, 'w') as f:
+                json.dump({}, f)
             return {}
-    return {}
+    else:
+        # Create an empty state file if it doesn't exist
+        print("Creating new state file")
+        with open(state_file, 'w') as f:
+            json.dump({}, f)
+        return {}
 
 def save_processing_state(state, state_file="processing_state.json"):
     """Save the processing state to a JSON file"""
-    with open(state_file, 'w') as f:
-        json.dump(state, f, indent=2)
+    try:
+        with open(state_file, 'w') as f:
+            json.dump(state, f, indent=2)
+        print(f"State saved with {len(state)} entries")
+    except Exception as e:
+        print(f"Error saving state: {str(e)}")
 
 def process_csv(input_path, recipe_module, source_lang, target_lang, mode="full"):
     df = pd.read_csv(input_path)
@@ -67,6 +80,7 @@ def get_output_filename(input_filename, recipe_name):
 def run_translation_only(input_dir, output_dir, recipes, state):
     """Run only the translation part"""
     print("Running translation only...")
+    print(f"Initial state: {len(state)} entries")
     
     # Process each CSV file in the input directory
     for file in os.listdir(input_dir):
@@ -114,10 +128,13 @@ def run_translation_only(input_dir, output_dir, recipes, state):
                         print(f"Recipe {recipe_name} doesn't support translation-only mode")
                 except Exception as e:
                     print(f"Error applying {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
+    
+    print(f"Translation process completed! Final state: {len(state)} entries")
 
 def run_similarity_only(input_dir, output_dir, recipes, state):
     """Run only the similarity comparison part"""
     print("Running similarity comparison only...")
+    print(f"Initial state: {len(state)} entries")
     
     # Process each CSV file in the input directory
     for file in os.listdir(input_dir):
@@ -171,10 +188,13 @@ def run_similarity_only(input_dir, output_dir, recipes, state):
                         print(f"Recipe {recipe_name} doesn't support similarity-only mode")
                 except Exception as e:
                     print(f"Error applying similarity with {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
+    
+    print(f"Similarity process completed! Final state: {len(state)} entries")
 
 def run_full_process(input_dir, output_dir, recipes, state):
     """Run the full process (translation + similarity)"""
     print("Running full process...")
+    print(f"Initial state: {len(state)} entries")
     
     # Process each CSV file in the input directory
     for file in os.listdir(input_dir):
@@ -219,6 +239,8 @@ def run_full_process(input_dir, output_dir, recipes, state):
                     print(f"Completed {recipe_name} on {file} for {source_lang}-{target_lang}")
                 except Exception as e:
                     print(f"Error applying {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
+    
+    print(f"Full process completed! Final state: {len(state)} entries")
 
 def display_menu():
     """Display the menu options"""
@@ -248,7 +270,9 @@ def reset_processing_state(state_file="processing_state.json"):
     """Reset the processing state"""
     if os.path.exists(state_file):
         os.remove(state_file)
-    print("Processing state has been reset.")
+        print("Processing state has been reset.")
+    else:
+        print("No state file found to reset.")
 
 def main():
     # Define input and output directories
@@ -263,6 +287,7 @@ def main():
     
     # Load processing state
     state = load_processing_state()
+    print(f"Loaded state with {len(state)} entries")
     
     while True:
         choice = display_menu()
