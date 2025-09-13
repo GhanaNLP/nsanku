@@ -1,0 +1,10 @@
+Translation Benchmark Results for gaa-eng
+Generated on: 2025-09-13 07:27:13
+
+Model Performance:
+deepseek-v3.1: 36.72%
+gpt-oss-120b: 34.82%
+llama-3.3-70b-instruct: 30.21%
+
+Best Model: deepseek-v3.1 (36.72%)
+Average Score: 33.91%

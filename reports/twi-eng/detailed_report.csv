@@ -1,0 +1,4 @@
+Model,Similarity Score (%),Raw Score
+deepseek-v3.1,73.25%,73.24927197999999
+gpt-oss-120b,68.16%,68.15637844
+llama-3.3-70b-instruct,50.73%,50.73072514

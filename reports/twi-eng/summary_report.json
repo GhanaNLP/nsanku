@@ -1,0 +1,12 @@
+{
+  "language_pair": "twi-eng",
+  "timestamp": "2025-09-13T07:27:11.544159",
+  "models": {
+    "llama-3.3-70b-instruct": 50.73072514,
+    "deepseek-v3.1": 73.24927197999999,
+    "gpt-oss-120b": 68.15637844
+  },
+  "average_score": 64.04545852,
+  "best_model": "deepseek-v3.1",
+  "best_score": 73.24927197999999
+}

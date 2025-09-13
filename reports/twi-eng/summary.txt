@@ -1,0 +1,10 @@
+Translation Benchmark Results for twi-eng
+Generated on: 2025-09-13 07:27:11
+
+Model Performance:
+deepseek-v3.1: 73.25%
+gpt-oss-120b: 68.16%
+llama-3.3-70b-instruct: 50.73%
+
+Best Model: deepseek-v3.1 (73.25%)
+Average Score: 64.05%

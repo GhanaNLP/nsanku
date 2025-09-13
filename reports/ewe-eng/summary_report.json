@@ -1,0 +1,12 @@
+{
+  "language_pair": "ewe-eng",
+  "timestamp": "2025-09-13T07:27:08.548675",
+  "models": {
+    "deepseek-v3.1": 41.78687769980001,
+    "gpt-oss-120b": 32.17503241432,
+    "llama-3.3-70b-instruct": 30.9785955896
+  },
+  "average_score": 34.98016856790667,
+  "best_model": "deepseek-v3.1",
+  "best_score": 41.78687769980001
+}

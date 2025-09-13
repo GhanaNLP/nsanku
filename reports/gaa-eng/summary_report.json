@@ -1,0 +1,12 @@
+{
+  "language_pair": "gaa-eng",
+  "timestamp": "2025-09-13T07:27:13.015987",
+  "models": {
+    "deepseek-v3.1": 36.72051356200001,
+    "gpt-oss-120b": 34.817771257,
+    "llama-3.3-70b-instruct": 30.206027816000002
+  },
+  "average_score": 33.914770878333336,
+  "best_model": "deepseek-v3.1",
+  "best_score": 36.72051356200001
+}

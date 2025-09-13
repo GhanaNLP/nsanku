@@ -1,0 +1,26 @@
+{
+  "timestamp": "2025-09-13T07:27:14.435704",
+  "total_language_pairs": 4,
+  "total_models": 3,
+  "model_performance": {
+    "llama-3.3-70b-instruct": 33.60716128765,
+    "deepseek-v3.1": 45.817050004775,
+    "gpt-oss-120b": 40.143280382454996
+  },
+  "language_performance": {
+    "ewe-eng": 34.98016856790667,
+    "nzi-eng": 26.482924266933328,
+    "twi-eng": 64.04545852,
+    "gaa-eng": 33.914770878333336
+  },
+  "best_overall_model": "deepseek-v3.1",
+  "best_overall_score": 45.817050004775,
+  "best_language_pair": "twi-eng",
+  "best_language_score": 64.04545852,
+  "language_pairs": [
+    "ewe-eng",
+    "nzi-eng",
+    "twi-eng",
+    "gaa-eng"
+  ]
+}
