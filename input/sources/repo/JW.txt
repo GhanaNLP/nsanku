@@ -1,0 +1,41 @@
+    Akan (Twi and Fante variants are major dialects in Ghana):
+
+        twi (Twi) - This is the most widely spoken Ghanaian language.
+
+        fat (Fante) - Another major Akan language.
+
+    Ewe:
+
+        ewe - A major language spoken in the Volta Region.
+
+    Dagaare:
+
+        dga - Spoken in the Upper West Region.
+
+    Dagbani:
+
+        dag - The major language of the Northern Region.
+
+    Dangme:
+
+        ada - Spoken in the Greater Accra Region.
+
+    Ga:
+
+        gaa - Spoken in the Greater Accra Region.
+
+    Gonja:
+
+        gjn - Spoken in the Northern Region.
+
+    Kasem:
+
+        xsm - Spoken in the Upper East Region.
+
+    Nzema:
+
+        nzi - Spoken in the Western Region.
+
+    Farefare (Frafra):
+
+        gur - This code often represents the broader Gur group, but in this context, it's used for Farefare, spoken in the Upper East Region.
