@@ -20,7 +20,7 @@ driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 
 # Read input CSV
-input_file = "Youversion-Ghana_bible-links.csv"
+input_file = "Youversion-Ghana_bible-links_fante.csv"
 with open(input_file, mode='r', encoding='utf-8') as file:
     reader = csv.DictReader(file)
     input_data = list(reader)
