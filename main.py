@@ -10,6 +10,42 @@ import json
 sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
 from reporting import generate_report
 
+def setup_api_key():
+    """Check for .env file and create it if missing with user-provided API key"""
+    env_file = '.env'
+    if not os.path.exists(env_file):
+        print("No .env file found.")
+        print("Please enter your NVIDIA API key obtained from https://build.nvidia.com/")
+        api_key = input("API Key: ").strip()
+        
+        with open(env_file, 'w') as f:
+            f.write(f'NVIDIA_BUILD_API_KEY={api_key}\n')
+        
+        print(".env file created with your API key.")
+        return api_key
+    else:
+        # Load existing API key from .env file
+        nvidia_key = None
+        
+        with open(env_file, 'r') as f:
+            for line in f:
+                if line.startswith('NVIDIA_BUILD_API_KEY='):
+                    nvidia_key = line.strip().split('=', 1)[1]
+        
+        # If we have the NVIDIA key, return it
+        if nvidia_key:
+            return nvidia_key
+        
+        # If we get here, the .env file exists but doesn't contain the key
+        print("Existing .env file found but no NVIDIA API key detected.")
+        api_key = input("Please enter your NVIDIA API key: ").strip()
+        
+        with open(env_file, 'w') as f:
+            f.write(f'NVIDIA_BUILD_API_KEY={api_key}\n')
+        
+        print("API key added to .env file.")
+        return api_key
+
 def load_recipes(recipes_dir="recipes"):
     recipes = {}
     for file in os.listdir(recipes_dir):
@@ -275,6 +311,10 @@ def reset_processing_state(state_file="processing_state.json"):
         print("No state file found to reset.")
 
 def main():
+    # Setup API key first
+    api_key = setup_api_key()
+    os.environ['NVIDIA_BUILD_API_KEY'] = api_key
+    
     # Define input and output directories
     input_dir = "input"
     output_dir = "output"
