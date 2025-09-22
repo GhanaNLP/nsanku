@@ -32,7 +32,7 @@ def translate_text_with_groq(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="openai/gpt-oss-120b",  # You can change this to other Groq models
+                model="qwen/qwen3-32b",  # You can change this to other Groq models
                 messages=[
                     {
                         "role": "user",
@@ -82,7 +82,7 @@ def translation_only(df, source_lang, target_lang):
     result_df['translated'] = ""
 
     # Groq has very fast inference, but we should still add a small delay to be respectful
-    delay_between_requests = 2.0  # 100ms delay
+    delay_between_requests = 1.0  # 100ms delay
 
     # Translations with rate limiting
     total_texts = len(result_df)

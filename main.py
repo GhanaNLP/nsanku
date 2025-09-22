@@ -96,7 +96,7 @@ def save_processing_state(state, state_file="processing_state.json"):
     except Exception as e:
         print(f"Error saving state: {str(e)}")
 
-def sample_dataframe(df, sample_size=20):
+def sample_dataframe(df, sample_size=5):
     """Randomly sample rows from dataframe with proper shuffling"""
     if len(df) <= sample_size:
         return df.copy()
@@ -111,9 +111,9 @@ def sample_dataframe(df, sample_size=20):
     return sampled_df
 
 def process_csv(input_path, recipe_module, source_lang, target_lang, mode="full"):
-    # Read the CSV and sample 20 rows randomly
+    # Read the CSV and sample 5 rows randomly
     df = pd.read_csv(input_path)
-    sampled_df = sample_dataframe(df, sample_size=20)
+    sampled_df = sample_dataframe(df, sample_size=5)
     
     # Process with the specified language codes
     if mode == "translation_only" and hasattr(recipe_module, 'translation_only'):

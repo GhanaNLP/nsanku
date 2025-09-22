@@ -32,7 +32,7 @@ def translate_text_with_groq(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="openai/gpt-oss-120b",  # You can change this to other Groq models
+                model="gemma2-9b-it",  # You can change this to other Groq models
                 messages=[
                     {
                         "role": "user",
