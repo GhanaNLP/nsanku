@@ -32,7 +32,7 @@ def translate_text_with_groq(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="groq/compound",  # You can change this to other Groq models
+                model="meta-llama/llama-4-scout-17b-16e-instruct",  # You can change this to other Groq models
                 messages=[
                     {
                         "role": "user",
@@ -76,7 +76,7 @@ def calculate_similarity(translated, reference):
 def translation_only(df, source_lang, target_lang):
     """Only perform translation without similarity calculation"""
     print(f"Translation: Groq API")
-    print(f"Model: groq-compound")
+    print(f"Model: meta-llama/llama-4-scout-17b-16e-instruct")
 
     result_df = df.copy()
     result_df['translated'] = ""

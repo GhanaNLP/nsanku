@@ -32,7 +32,7 @@ def translate_text_with_groq(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="openai/gpt-oss-120b",  # You can change this to other Groq models
+                model="moonshotai/kimi-k2-instruct-0905",  # You can change this to other Groq models
                 messages=[
                     {
                         "role": "user",
@@ -76,13 +76,13 @@ def calculate_similarity(translated, reference):
 def translation_only(df, source_lang, target_lang):
     """Only perform translation without similarity calculation"""
     print(f"Translation: Groq API")
-    print(f"Model: openai/gpt-oss-120b")
+    print(f"Model: kimi-k2-instruct-0905")
 
     result_df = df.copy()
     result_df['translated'] = ""
 
     # Groq has very fast inference, but we should still add a small delay to be respectful
-    delay_between_requests = 2.0  # 100ms delay
+    delay_between_requests = 1.0  # 100ms delay
 
     # Translations with rate limiting
     total_texts = len(result_df)

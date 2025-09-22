@@ -2,7 +2,7 @@ import pandas as pd
 import time
 import os
 import re
-from openai import OpenAI
+from groq import Groq
 from sentence_transformers import SentenceTransformer, util
 from dotenv import load_dotenv
 from typing import List
@@ -10,11 +10,8 @@ from typing import List
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize NVIDIA API client
-client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("NVIDIA_BUILD_API_KEY")
-)
+# Initialize Groq client
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # Add utils to path
 import sys
@@ -25,8 +22,8 @@ from language_mapping import get_language_name, get_iso2_code, get_nllb_code
 similarity_model_name = "sentence-transformers/all-mpnet-base-v2"
 similarity_model = SentenceTransformer(similarity_model_name)
 
-def translate_text_with_nvidia(text, source_lang, target_lang, max_retries=5):
-    """Translate text using NVIDIA Build API via OpenAI client"""
+def translate_text_with_groq(text, source_lang, target_lang, max_retries=5):
+    """Translate text using Groq API"""
     source_lang_name = get_language_name(source_lang)
     target_lang_name = get_language_name(target_lang)
 
@@ -35,7 +32,7 @@ def translate_text_with_nvidia(text, source_lang, target_lang, max_retries=5):
     for attempt in range(max_retries):
         try:
             completion = client.chat.completions.create(
-                model="deepseek-ai/deepseek-v3.1",
+                model="qwen/qwen3-32b",  # You can change this to other Groq models
                 messages=[
                     {
                         "role": "user",
@@ -43,10 +40,9 @@ def translate_text_with_nvidia(text, source_lang, target_lang, max_retries=5):
                     }
                 ],
                 temperature=0.3,
-                top_p=0.95,
                 max_tokens=2024,
+                top_p=0.95,
                 stream=False
-                
             )
             
             # Directly get the response content
@@ -79,14 +75,14 @@ def calculate_similarity(translated, reference):
 
 def translation_only(df, source_lang, target_lang):
     """Only perform translation without similarity calculation"""
-    print(f"Translation: NVIDIA Build API")
-    print(f"Rate limiting: 38 requests per minute (~1.2 seconds between requests)")
+    print(f"Translation: Groq API")
+    print(f"Model: qwen3-32b")
 
     result_df = df.copy()
     result_df['translated'] = ""
 
-    # Calculate delay between requests to achieve 38 requests per minute
-    delay_between_requests = 1.2
+    # Groq has very fast inference, but we should still add a small delay to be respectful
+    delay_between_requests = 1.0  # 100ms delay
 
     # Translations with rate limiting
     total_texts = len(result_df)
@@ -95,7 +91,7 @@ def translation_only(df, source_lang, target_lang):
         text = row['text']
         print(f"Translating {i+1}/{total_texts}: {text[:50]}...")
         
-        translation = translate_text_with_nvidia(text, source_lang, target_lang)
+        translation = translate_text_with_groq(text, source_lang, target_lang)
         result_df.at[i, 'translated'] = translation
         
         # Show translation result
@@ -104,9 +100,8 @@ def translation_only(df, source_lang, target_lang):
         else:
             print("  → [Translation failed]")
         
-        # Rate limiting: wait before next request (except after the last one)
+        # Small delay to be respectful of the API
         if i < total_texts - 1:
-            print(f"Waiting {delay_between_requests:.2f} seconds before next request...")
             time.sleep(delay_between_requests)
 
     print("Translation process completed!")
