@@ -1,0 +1,51 @@
+📊 Processing Summary:
+==================================================
+Processed File  Rows
+   ewe-eng.csv 77995
+   twi-eng.csv 68374
+   gaa-eng.csv 43301
+   xon-eng.csv 32107
+   ada-eng.csv 29951
+   xsm-eng.csv 27140
+   lef-eng.csv 26175
+   vag-eng.csv 26046
+   kus-eng.csv 25980
+   nzi-eng.csv 25910
+   sfw-eng.csv 25849
+   mzw-eng.csv 25600
+   bud-eng.csv 25568
+   sil-eng.csv 25457
+   bwu-eng.csv 24636
+   gjn-eng.csv 23437
+   dag-eng.csv 14538
+   gur-eng.csv 13869
+   nko-eng.csv  9390
+   akp-eng.csv  7008
+   tcd-eng.csv  6995
+   abr-eng.csv  6954
+   bov-eng.csv  6934
+   snw-eng.csv  6877
+   lip-eng.csv  6844
+   bim-eng.csv  6828
+   avn-eng.csv  6827
+   kma-eng.csv  6810
+   biv-eng.csv  6680
+   maw-eng.csv  6677
+   naw-eng.csv  6567
+   bib-eng.csv  6551
+   tpm-eng.csv  6444
+   any-eng.csv  6439
+   ntr-eng.csv  6163
+   cko-eng.csv  6126
+   sig-eng.csv  6006
+   ncu-eng.csv  5427
+   acd-eng.csv  5156
+   fat-eng.csv  4437
+   nyb-eng.csv  4000
+   dga-eng.csv  3053
+   hag-eng.csv  1151
+==================================================
+Total Files Processed: 43
+Total Rows Processed: 714,277
+==================================================
+All CSV files processed and saved successfully! ✨
