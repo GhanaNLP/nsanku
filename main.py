@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import sys
 import json
+import random
 
 # Add utils to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'utils'))
@@ -95,16 +96,31 @@ def save_processing_state(state, state_file="processing_state.json"):
     except Exception as e:
         print(f"Error saving state: {str(e)}")
 
+def sample_dataframe(df, sample_size=5):
+    """Randomly sample rows from dataframe with proper shuffling"""
+    if len(df) <= sample_size:
+        return df.copy()
+    
+    # Create a copy and shuffle randomly
+    shuffled_df = df.copy().sample(frac=1, random_state=None).reset_index(drop=True)
+    
+    # Take the first sample_size rows
+    return shuffled_df.head(sample_size)
+
 def process_csv(input_path, recipe_module, source_lang, target_lang, mode="full"):
+    # Read the CSV and sample 5 rows randomly
     df = pd.read_csv(input_path)
+    sampled_df = sample_dataframe(df, sample_size=5)
+    
+    print(f"Processing {len(sampled_df)} randomly sampled rows from {len(df)} total rows")
     
     # Process with the specified language codes
     if mode == "translation_only" and hasattr(recipe_module, 'translation_only'):
-        processed_df = recipe_module.translation_only(df, source_lang=source_lang, target_lang=target_lang)
+        processed_df = recipe_module.translation_only(sampled_df, source_lang=source_lang, target_lang=target_lang)
     elif mode == "similarity_only" and hasattr(recipe_module, 'similarity_only'):
-        processed_df = recipe_module.similarity_only(df)
+        processed_df = recipe_module.similarity_only(sampled_df)
     else:
-        processed_df = recipe_module.process_dataframe(df, source_lang=source_lang, target_lang=target_lang)
+        processed_df = recipe_module.process_dataframe(sampled_df, source_lang=source_lang, target_lang=target_lang)
     
     return processed_df
 
@@ -113,202 +129,79 @@ def get_output_filename(input_filename, recipe_name):
     name, ext = os.path.splitext(input_filename)
     return f"{name}_{recipe_name}{ext}"
 
-def run_translation_only(input_dir, output_dir, recipes, state):
-    """Run only the translation part"""
-    print("Running translation only...")
-    print(f"Initial state: {len(state)} entries")
+def run_full_process_automatic(input_dir, output_dir, recipes):
+    """Run the full process automatically without user intervention"""
+    print("="*60)
+    print("Starting automatic end-to-end processing")
+    print("="*60)
+    
+    # Load processing state
+    state = load_processing_state()
+    print(f"Loaded state with {len(state)} entries")
     
     # Process each CSV file in the input directory
-    for file in os.listdir(input_dir):
-        if file.endswith(".csv"):
-            # Extract language pair from filename
-            source_lang, target_lang = extract_language_pair_from_filename(file)
-            if not source_lang or not target_lang:
-                print(f"Skipping {file}: filename should be in format 'source-target.csv'")
+    csv_files = [f for f in os.listdir(input_dir) if f.endswith(".csv")]
+    print(f"Found {len(csv_files)} CSV files to process")
+    
+    for file in csv_files:
+        # Extract language pair from filename
+        source_lang, target_lang = extract_language_pair_from_filename(file)
+        if not source_lang or not target_lang:
+            print(f"Skipping {file}: filename should be in format 'source-target.csv'")
+            continue
+            
+        input_path = os.path.join(input_dir, file)
+        
+        # Create output directory for this language pair
+        lang_pair_dir = os.path.join(output_dir, f"{source_lang}-{target_lang}")
+        os.makedirs(lang_pair_dir, exist_ok=True)
+        
+        for recipe_name, recipe_module in recipes.items():
+            # Generate recipe-specific output filename
+            output_filename = get_output_filename(file, recipe_name)
+            output_path = os.path.join(lang_pair_dir, output_filename)
+            
+            # Check if this recipe has already processed this file
+            state_key = f"{source_lang}-{target_lang}/{file}/{recipe_name}"
+            if state.get(state_key, {}).get('similarity_completed', False):
+                print(f"Skipping {recipe_name} for {file} ({source_lang}-{target_lang}) - already processed")
                 continue
-                
-            input_path = os.path.join(input_dir, file)
             
-            # Create output directory for this language pair
-            lang_pair_dir = os.path.join(output_dir, f"{source_lang}-{target_lang}")
-            os.makedirs(lang_pair_dir, exist_ok=True)
+            print(f"\nProcessing {file} with recipe {recipe_name} for {source_lang}-{target_lang}")
+            print(f"Input: {input_path}")
+            print(f"Output: {output_path}")
             
-            for recipe_name, recipe_module in recipes.items():
-                # Generate recipe-specific output filename
-                output_filename = get_output_filename(file, recipe_name)
-                output_path = os.path.join(lang_pair_dir, output_filename)
+            try:
+                # Run the full process (translation + similarity)
+                result_df = process_csv(input_path, recipe_module, source_lang, target_lang)
+                result_df.to_csv(output_path, index=False)
                 
-                # Check if this recipe has already completed translation for this file
-                state_key = f"{source_lang}-{target_lang}/{file}/{recipe_name}"
-                if state.get(state_key, {}).get('translation_completed', False):
-                    print(f"Skipping translation for {recipe_name} on {file} ({source_lang}-{target_lang}) - already completed")
-                    continue
+                # Update state
+                state[state_key] = {
+                    'translation_completed': True,
+                    'similarity_completed': True,
+                    'rows_processed': len(result_df),
+                    'timestamp': pd.Timestamp.now().isoformat()
+                }
+                save_processing_state(state)
                 
-                print(f"Processing {input_path} with recipe {recipe_name} for {source_lang}-{target_lang}")
+                print(f"✓ Completed {recipe_name} on {file} for {source_lang}-{target_lang}")
+                print(f"  Processed {len(result_df)} rows")
                 
-                try:
-                    # Check if recipe supports translation only mode
-                    if hasattr(recipe_module, 'translation_only'):
-                        result_df = process_csv(input_path, recipe_module, 
-                                              source_lang, target_lang, "translation_only")
-                        result_df.to_csv(output_path, index=False)
-                        
-                        # Update state
-                        if state_key not in state:
-                            state[state_key] = {}
-                        state[state_key]['translation_completed'] = True
-                        save_processing_state(state)
-                        
-                        print(f"Completed translation with {recipe_name} on {file} for {source_lang}-{target_lang}")
-                    else:
-                        print(f"Recipe {recipe_name} doesn't support translation-only mode")
-                except Exception as e:
-                    print(f"Error applying {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
+            except Exception as e:
+                print(f"✗ Error applying {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
     
-    print(f"Translation process completed! Final state: {len(state)} entries")
-
-def run_similarity_only(input_dir, output_dir, recipes, state):
-    """Run only the similarity comparison part"""
-    print("Running similarity comparison only...")
-    print(f"Initial state: {len(state)} entries")
+    print(f"\nFull process completed! Final state: {len(state)} entries")
     
-    # Process each CSV file in the input directory
-    for file in os.listdir(input_dir):
-        if file.endswith(".csv"):
-            # Extract language pair from filename
-            source_lang, target_lang = extract_language_pair_from_filename(file)
-            if not source_lang or not target_lang:
-                print(f"Skipping {file}: filename should be in format 'source-target.csv'")
-                continue
-                
-            # Create output directory for this language pair
-            lang_pair_dir = os.path.join(output_dir, f"{source_lang}-{target_lang}")
-            os.makedirs(lang_pair_dir, exist_ok=True)
-            
-            for recipe_name, recipe_module in recipes.items():
-                # Generate recipe-specific output filename
-                output_filename = get_output_filename(file, recipe_name)
-                output_path = os.path.join(lang_pair_dir, output_filename)
-                
-                # Check if translation has been completed
-                state_key = f"{source_lang}-{target_lang}/{file}/{recipe_name}"
-                if not state.get(state_key, {}).get('translation_completed', False):
-                    print(f"Skipping similarity for {recipe_name} on {file} ({source_lang}-{target_lang}) - translation not completed")
-                    continue
-                
-                # Check if similarity has already been completed
-                if state.get(state_key, {}).get('similarity_completed', False):
-                    print(f"Skipping similarity for {recipe_name} on {file} ({source_lang}-{target_lang}) - already completed")
-                    continue
-                
-                print(f"Processing similarity for {recipe_name} on {file} ({source_lang}-{target_lang})")
-                
-                try:
-                    # Check if recipe supports similarity only mode
-                    if hasattr(recipe_module, 'similarity_only'):
-                        # Read the file that should contain translations
-                        if os.path.exists(output_path):
-                            df = pd.read_csv(output_path)
-                            result_df = process_csv(output_path, recipe_module, 
-                                                  source_lang, target_lang, "similarity_only")
-                            result_df.to_csv(output_path, index=False)
-                            
-                            # Update state
-                            state[state_key]['similarity_completed'] = True
-                            save_processing_state(state)
-                            
-                            print(f"Completed similarity with {recipe_name} on {file} for {source_lang}-{target_lang}")
-                        else:
-                            print(f"File not found: {output_path}")
-                    else:
-                        print(f"Recipe {recipe_name} doesn't support similarity-only mode")
-                except Exception as e:
-                    print(f"Error applying similarity with {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
+    # Generate reports automatically
+    print("\n" + "="*60)
+    print("Generating reports...")
+    print("="*60)
+    generate_report(output_dir)
     
-    print(f"Similarity process completed! Final state: {len(state)} entries")
-
-def run_full_process(input_dir, output_dir, recipes, state):
-    """Run the full process (translation + similarity)"""
-    print("Running full process...")
-    print(f"Initial state: {len(state)} entries")
-    
-    # Process each CSV file in the input directory
-    for file in os.listdir(input_dir):
-        if file.endswith(".csv"):
-            # Extract language pair from filename
-            source_lang, target_lang = extract_language_pair_from_filename(file)
-            if not source_lang or not target_lang:
-                print(f"Skipping {file}: filename should be in format 'source-target.csv'")
-                continue
-                
-            input_path = os.path.join(input_dir, file)
-            
-            # Create output directory for this language pair
-            lang_pair_dir = os.path.join(output_dir, f"{source_lang}-{target_lang}")
-            os.makedirs(lang_pair_dir, exist_ok=True)
-            
-            for recipe_name, recipe_module in recipes.items():
-                # Generate recipe-specific output filename
-                output_filename = get_output_filename(file, recipe_name)
-                output_path = os.path.join(lang_pair_dir, output_filename)
-                
-                # Check if this recipe has already processed this file
-                state_key = f"{source_lang}-{target_lang}/{file}/{recipe_name}"
-                if state.get(state_key, {}).get('similarity_completed', False):
-                    print(f"Skipping {recipe_name} for {file} ({source_lang}-{target_lang}) - already processed")
-                    continue
-                
-                print(f"Processing {input_path} with recipe {recipe_name} for {source_lang}-{target_lang}")
-                print(f"Output will be saved to {output_path}")
-                
-                try:
-                    result_df = process_csv(input_path, recipe_module, source_lang, target_lang)
-                    result_df.to_csv(output_path, index=False)
-                    
-                    # Update state
-                    state[state_key] = {
-                        'translation_completed': True,
-                        'similarity_completed': True
-                    }
-                    save_processing_state(state)
-                    
-                    print(f"Completed {recipe_name} on {file} for {source_lang}-{target_lang}")
-                except Exception as e:
-                    print(f"Error applying {recipe_name} to {file} for {source_lang}-{target_lang}: {str(e)}")
-    
-    print(f"Full process completed! Final state: {len(state)} entries")
-
-def display_menu():
-    """Display the menu options"""
-    print("\n" + "="*50)
-    print("Translation Pipeline Menu")
-    print("="*50)
-    print("1. Run only translation")
-    print("2. Run only similarity comparison")
-    print("3. Run full process (translation + similarity)")
-    print("4. Generate reports only")
-    print("5. Reset processing state")
-    print("6. Exit")
-    print("="*50)
-    
-    while True:
-        try:
-            choice = input("Please select an option (1-6): ")
-            if choice in ["1", "2", "3", "4", "5", "6"]:
-                return choice
-            else:
-                print("Invalid option. Please enter a number between 1 and 6.")
-        except KeyboardInterrupt:
-            print("\nExiting...")
-            sys.exit(0)
-
-def reset_processing_state(state_file="processing_state.json"):
-    """Reset the processing state"""
-    if os.path.exists(state_file):
-        os.remove(state_file)
-        print("Processing state has been reset.")
-    else:
-        print("No state file found to reset.")
+    print("\n" + "="*60)
+    print("Automatic processing completed successfully!")
+    print("="*60)
 
 def main():
     # Setup API key first
@@ -324,28 +217,10 @@ def main():
     
     # Load recipes
     recipes = load_recipes()
+    print(f"Loaded {len(recipes)} recipes: {list(recipes.keys())}")
     
-    # Load processing state
-    state = load_processing_state()
-    print(f"Loaded state with {len(state)} entries")
-    
-    while True:
-        choice = display_menu()
-        
-        if choice == "1":
-            run_translation_only(input_dir, output_dir, recipes, state)
-        elif choice == "2":
-            run_similarity_only(input_dir, output_dir, recipes, state)
-        elif choice == "3":
-            run_full_process(input_dir, output_dir, recipes, state)
-        elif choice == "4":
-            generate_report(output_dir)
-        elif choice == "5":
-            reset_processing_state()
-            state = {}  # Reset in-memory state
-        elif choice == "6":
-            print("Exiting...")
-            break
+    # Run the full automatic process
+    run_full_process_automatic(input_dir, output_dir, recipes)
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,7 @@ input_folder = '/home/owusus/Documents/GitHub/nsanku/input/sources/parallel/vers
 output_folder = '/home/owusus/Documents/GitHub/nsanku/input'  # <-- replace with your desired output folder
 
 # Set the maximum number of rows per CSV file (excluding header)
-max_rows_per_file = 200  # <-- Change this value to your desired maximum
+max_rows_per_file = 5  # <-- Change this value to your desired maximum
 
 # Ensure the output folder exists, create it if it doesn't
 if not os.path.exists(output_folder):
