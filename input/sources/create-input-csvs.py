@@ -5,6 +5,9 @@ import os
 input_folder = '/home/owusus/Documents/GitHub/nsanku/input/sources/parallel/verses'  # <-- replace with your input folder
 output_folder = '/home/owusus/Documents/GitHub/nsanku/input'  # <-- replace with your desired output folder
 
+# Set the maximum number of rows per CSV file (excluding header)
+max_rows_per_file = 200  # <-- Change this value to your desired maximum
+
 # Ensure the output folder exists, create it if it doesn't
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
@@ -18,11 +21,12 @@ for filename in os.listdir(input_folder):
         # Construct the full path for the input file
         input_file_path = os.path.join(input_folder, filename)
         
-        # Read the CSV
-        df = pd.read_csv(input_file_path)
+        # Read the CSV to get original row count
+        original_df = pd.read_csv(input_file_path)
+        original_rows = len(original_df)
         
         # Rename columns
-        df = df.rename(columns={
+        df = original_df.rename(columns={
             'translation_verse': 'text',
             'english_verse': 'ref'
         })
@@ -30,6 +34,10 @@ for filename in os.listdir(input_folder):
         # Drop the 'verse_number' column if it exists
         if 'verse_number' in df.columns:
             df = df.drop(columns=['verse_number'])
+        
+        # Apply row limit if specified
+        if max_rows_per_file > 0 and len(df) > max_rows_per_file:
+            df = df.head(max_rows_per_file)
             
         # Create new filename with -eng appended before the .csv extension
         base_name = filename[:-4]  # Remove the .csv extension
@@ -41,13 +49,10 @@ for filename in os.listdir(input_folder):
         # Save the modified CSV to the new output folder
         df.to_csv(output_file_path, index=False)
         
-        # Record the final row count
-        final_rows = len(df)
-        
-        # Add to summary data (only processed filename)
+        # Add to summary data with ORIGINAL row count
         summary_data.append({
             'Processed File': new_filename,
-            'Rows': final_rows
+            'Rows': original_rows  # This is the original count, not the sampled count
         })
 
 # Create summary dataframe and sort by row count (descending)
