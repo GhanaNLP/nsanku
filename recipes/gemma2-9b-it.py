@@ -76,7 +76,7 @@ def calculate_similarity(translated, reference):
 def translation_only(df, source_lang, target_lang):
     """Only perform translation without similarity calculation"""
     print(f"Translation: Groq API")
-    print(f"Model: mixtral-8x7b-32768")
+    print(f"Model: gemma2-9b-it")
 
     result_df = df.copy()
     result_df['translated'] = ""
