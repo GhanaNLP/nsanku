@@ -79,13 +79,13 @@ def calculate_similarity(translated, reference):
 def translation_only(df, source_lang, target_lang):
     """Only perform translation without similarity calculation"""
     print(f"Translation: NVIDIA Build API")
-    print(f"Rate limiting: 38 requests per minute (~1.5 seconds between requests)")
+    print(f"Rate limiting: 38 requests per minute (~1.58 seconds between requests)")
 
     result_df = df.copy()
     result_df['translated'] = ""
 
     # Calculate delay between requests to achieve 38 requests per minute
-    delay_between_requests = 1.5
+    delay_between_requests = 1.58
 
     # Translations with rate limiting
     total_texts = len(result_df)
