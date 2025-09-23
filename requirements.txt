@@ -4,4 +4,8 @@ numpy>=1.21.0
 python-dotenv
 openai
 groq
+pandas
+plotly>=6.1.1
+kaleido>=1.1.0
+
 
