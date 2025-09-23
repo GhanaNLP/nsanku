@@ -308,12 +308,12 @@ def display_menu():
     print("\n" + "="*50)
     print("Translation Pipeline Menu")
     print("="*50)
-    print("1. Run only translation")
-    print("2. Run only similarity comparison")
-    print("3. Run full process (translation + similarity)")
-    print("4. Generate reports only")
-    print("5. Reset processing state")
-    print("6. Exit")
+ #  print("1. Run translation")
+ #  print("2. Run only similarity comparison")
+    print("1. Run LLM Evaluation")
+    print("2. Generate reports only")
+ #  print("5. Reset processing state")
+    print("3. Exit")
     print("="*50)
     
     while True:

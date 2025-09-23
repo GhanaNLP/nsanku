@@ -355,9 +355,8 @@ def create_enhanced_quadrant_chart(metrics_df, x_metric, y_metric, title, filena
         height=chart_height, width=chart_width
     )
     
-    # Save chart
+    # Save chart as HTML only
     fig.write_html(os.path.join(outdir, f"{filename}.html"))
-    fig.write_image(os.path.join(outdir, f"{filename}.png"), width=chart_width, height=chart_height)
     
     return fig
 
@@ -464,9 +463,8 @@ def create_horizontal_bar_chart(data, title, xlabel, filename, output_dir):
         height=max(400, len(labels) * 50 + 100)
     )
 
+    # Save as HTML only
     fig.write_html(os.path.join(output_dir, f"{filename}.html"))
-    fig.write_image(os.path.join(output_dir, f"{filename}.png"),
-                    width=1200, height=max(400, len(labels) * 50 + 100))
     return fig
 
 def create_stacked_bar_chart(data_dict, title, xlabel, filename, output_dir):
@@ -505,9 +503,8 @@ def create_stacked_bar_chart(data_dict, title, xlabel, filename, output_dir):
         legend=dict(orientation="v", yanchor="top", y=1, xanchor="left", x=1.02)
     )
 
+    # Save as HTML only
     fig.write_html(os.path.join(output_dir, f"{filename}.html"))
-    fig.write_image(os.path.join(output_dir, f"{filename}.png"),
-                    width=1400, height=max(400, len(model_order) * 60 + 150))
     return fig
 
 def collect_results(input_dir="output"):
@@ -735,6 +732,7 @@ def generate_report(input_dir="output", output_dir="reports"):
     
     print(f"Reports generated successfully in {output_dir}/")
     print("Both traditional reports and quadrant analysis have been created!")
+    print("Note: Only HTML charts are generated (no PNG images)")
     
     if overall_summary:
         print(f"Overall best model: {overall_summary['best_overall_model']} ({overall_summary['best_overall_score']:.2f}%)")
