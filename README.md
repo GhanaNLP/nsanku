@@ -54,10 +54,7 @@ We recognize the following contributors to the Nsanku Project:
 
 ## Contact
 
-For questions, comments, or to share your results:
-
-- **Email:** natural.language.processing.gh@gmail.com
-- **Community Lead:** [Mich-Seth Owusu on LinkedIn](https://www.linkedin.com/in/mich-seth-owusu/)
+For questions, comments, or to share your results, send an email to michsethowusu@gmail.com. 
 
 ## License
 
