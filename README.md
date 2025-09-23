@@ -1,6 +1,6 @@
 # Nsanku Project
 
-A project by **Ghana NLP** to test the performance of Large Language Models (LLMs) on Ghanaian languages.
+A project by Ghana NLP to test the performance of Large Language Models (LLMs) on Ghanaian languages.
 
 ## Project Overview
 
@@ -48,7 +48,7 @@ The project currently evaluates **43 Ghanaian languages**:
 
 We recognize the following contributors to the Nsanku Project:
 
-- **Mich-Seth Owusu** - [LinkedIn](https://www.linkedin.com/in/mich-seth-owusu/)
+- [Mich-Seth Owusu](https://www.linkedin.com/in/mich-seth-owusu/)
 
 *Your name could be here! Contribute to the project and we'll add you to our list of contributors.*
 
@@ -62,4 +62,3 @@ For questions, comments, or to share your results:
 ## License
 
 This is an open community project. We welcome researchers, developers, and language enthusiasts to participate and help advance NLP for Ghanaian languages.
-
