@@ -1,0 +1,12 @@
+Translation Benchmark Results for gur-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+gpt-oss-120b: 23.65%
+kimi-k2-instruct-0905: 22.94%
+qwen3-32b: 21.59%
+gemma2-9b-it: 11.55%
+llama-4-maverick-17b-128e-instruct: 9.49%
+
+Best Model: gpt-oss-120b (23.65%)
+Average Score: 17.85%

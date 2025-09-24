@@ -1,0 +1,12 @@
+Translation Benchmark Results for sig-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 40.82%
+qwen3-32b: 39.97%
+llama-4-maverick-17b-128e-instruct: 37.35%
+gemma2-9b-it: 7.55%
+gpt-oss-120b: 4.48%
+
+Best Model: kimi-k2-instruct-0905 (40.82%)
+Average Score: 26.03%

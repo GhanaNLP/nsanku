@@ -1,0 +1,12 @@
+Translation Benchmark Results for xon-eng
+Generated on: 2025-09-24 14:06:29
+
+Model Performance:
+qwen3-32b: 47.54%
+kimi-k2-instruct-0905: 43.39%
+llama-4-maverick-17b-128e-instruct: 39.57%
+gemma2-9b-it: 24.83%
+gpt-oss-120b: 11.03%
+
+Best Model: qwen3-32b (47.54%)
+Average Score: 33.27%

@@ -1,0 +1,12 @@
+Translation Benchmark Results for ewe-eng
+Generated on: 2025-09-24 14:06:29
+
+Model Performance:
+kimi-k2-instruct-0905: 65.58%
+gpt-oss-120b: 55.03%
+llama-4-maverick-17b-128e-instruct: 50.49%
+qwen3-32b: 41.25%
+gemma2-9b-it: 40.31%
+
+Best Model: kimi-k2-instruct-0905 (65.58%)
+Average Score: 50.53%

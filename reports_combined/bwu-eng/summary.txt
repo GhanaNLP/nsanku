@@ -1,0 +1,12 @@
+Translation Benchmark Results for bwu-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 47.45%
+qwen3-32b: 45.24%
+llama-4-maverick-17b-128e-instruct: 35.88%
+gemma2-9b-it: 18.87%
+gpt-oss-120b: 12.30%
+
+Best Model: kimi-k2-instruct-0905 (47.45%)
+Average Score: 31.95%

@@ -1,0 +1,12 @@
+Translation Benchmark Results for bud-eng
+Generated on: 2025-09-24 14:06:29
+
+Model Performance:
+kimi-k2-instruct-0905: 47.28%
+qwen3-32b: 39.09%
+llama-4-maverick-17b-128e-instruct: 31.65%
+gemma2-9b-it: 26.29%
+gpt-oss-120b: 18.73%
+
+Best Model: kimi-k2-instruct-0905 (47.28%)
+Average Score: 32.61%

@@ -1,0 +1,12 @@
+Translation Benchmark Results for snw-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+llama-4-maverick-17b-128e-instruct: 36.66%
+gemma2-9b-it: 35.27%
+kimi-k2-instruct-0905: 31.93%
+qwen3-32b: 29.29%
+gpt-oss-120b: 11.72%
+
+Best Model: llama-4-maverick-17b-128e-instruct (36.66%)
+Average Score: 28.97%

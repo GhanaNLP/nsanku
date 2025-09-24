@@ -1,0 +1,14 @@
+{
+  "language_pair": "ntr-eng",
+  "timestamp": "2025-09-24T14:06:30.861388",
+  "models": {
+    "llama-4-maverick-17b-128e-instruct": 21.131882199999996,
+    "qwen3-32b": 32.202805999999995,
+    "kimi-k2-instruct-0905": 32.6174477,
+    "gpt-oss-120b": 8.8551426,
+    "gemma2-9b-it": 37.58842776
+  },
+  "average_score": 26.479141251999998,
+  "best_model": "gemma2-9b-it",
+  "best_score": 37.58842776
+}

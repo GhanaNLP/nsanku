@@ -1,0 +1,12 @@
+Translation Benchmark Results for ada-eng
+Generated on: 2025-09-24 14:06:29
+
+Model Performance:
+llama-4-maverick-17b-128e-instruct: 42.95%
+kimi-k2-instruct-0905: 42.22%
+qwen3-32b: 32.10%
+gemma2-9b-it: 28.80%
+gpt-oss-120b: 20.17%
+
+Best Model: llama-4-maverick-17b-128e-instruct (42.95%)
+Average Score: 33.25%

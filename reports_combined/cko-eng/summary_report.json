@@ -1,0 +1,14 @@
+{
+  "language_pair": "cko-eng",
+  "timestamp": "2025-09-24T14:06:30.523156",
+  "models": {
+    "kimi-k2-instruct-0905": 35.5977192,
+    "qwen3-32b": 48.9147658,
+    "gemma2-9b-it": 32.48789264,
+    "gpt-oss-120b": 40.7641394,
+    "llama-4-maverick-17b-128e-instruct": 32.977647399999995
+  },
+  "average_score": 38.148432887999995,
+  "best_model": "qwen3-32b",
+  "best_score": 48.9147658
+}

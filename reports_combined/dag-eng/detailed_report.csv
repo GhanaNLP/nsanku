@@ -1,0 +1,6 @@
+Model,Similarity Score (%),Raw Score
+llama-4-maverick-17b-128e-instruct,49.86%,49.86034975999999
+kimi-k2-instruct-0905,48.81%,48.8065714
+qwen3-32b,44.91%,44.9148092
+gemma2-9b-it,38.53%,38.525306
+gpt-oss-120b,28.29%,28.290865099999994

@@ -1,0 +1,12 @@
+Translation Benchmark Results for dag-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+llama-4-maverick-17b-128e-instruct: 49.86%
+kimi-k2-instruct-0905: 48.81%
+qwen3-32b: 44.91%
+gemma2-9b-it: 38.53%
+gpt-oss-120b: 28.29%
+
+Best Model: llama-4-maverick-17b-128e-instruct (49.86%)
+Average Score: 42.08%

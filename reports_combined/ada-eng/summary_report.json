@@ -1,0 +1,14 @@
+{
+  "language_pair": "ada-eng",
+  "timestamp": "2025-09-24T14:06:29.768572",
+  "models": {
+    "gemma2-9b-it": 28.798565879999998,
+    "gpt-oss-120b": 20.169779679999998,
+    "qwen3-32b": 32.103149200000004,
+    "llama-4-maverick-17b-128e-instruct": 42.95302920000001,
+    "kimi-k2-instruct-0905": 42.218744599999994
+  },
+  "average_score": 33.248653712,
+  "best_model": "llama-4-maverick-17b-128e-instruct",
+  "best_score": 42.95302920000001
+}

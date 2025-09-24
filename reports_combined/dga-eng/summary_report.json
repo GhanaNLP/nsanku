@@ -1,0 +1,14 @@
+{
+  "language_pair": "dga-eng",
+  "timestamp": "2025-09-24T14:06:30.728718",
+  "models": {
+    "llama-4-maverick-17b-128e-instruct": 27.128970199999998,
+    "qwen3-32b": 35.76174957599999,
+    "gpt-oss-120b": 20.053270020000006,
+    "gemma2-9b-it": 25.753329200000003,
+    "kimi-k2-instruct-0905": 28.72738226
+  },
+  "average_score": 27.484940251199998,
+  "best_model": "qwen3-32b",
+  "best_score": 35.76174957599999
+}

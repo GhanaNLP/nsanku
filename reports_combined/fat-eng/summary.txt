@@ -1,0 +1,12 @@
+Translation Benchmark Results for fat-eng
+Generated on: 2025-09-24 14:06:29
+
+Model Performance:
+gpt-oss-120b: 56.02%
+qwen3-32b: 52.94%
+kimi-k2-instruct-0905: 52.35%
+gemma2-9b-it: 43.64%
+llama-4-maverick-17b-128e-instruct: 40.32%
+
+Best Model: gpt-oss-120b (56.02%)
+Average Score: 49.05%

@@ -1,0 +1,14 @@
+{
+  "language_pair": "bib-eng",
+  "timestamp": "2025-09-24T14:06:30.211998",
+  "models": {
+    "qwen3-32b": 27.11232846,
+    "gpt-oss-120b": 10.23742918,
+    "gemma2-9b-it": 34.55649732,
+    "llama-4-maverick-17b-128e-instruct": 37.3330374,
+    "kimi-k2-instruct-0905": 28.865240000000004
+  },
+  "average_score": 27.620906472,
+  "best_model": "llama-4-maverick-17b-128e-instruct",
+  "best_score": 37.3330374
+}

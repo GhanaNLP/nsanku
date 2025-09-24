@@ -1,0 +1,12 @@
+Translation Benchmark Results for xsm-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+gemma2-9b-it: 25.94%
+qwen3-32b: 25.11%
+kimi-k2-instruct-0905: 24.17%
+llama-4-maverick-17b-128e-instruct: 16.05%
+gpt-oss-120b: 10.56%
+
+Best Model: gemma2-9b-it (25.94%)
+Average Score: 20.37%

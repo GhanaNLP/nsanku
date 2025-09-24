@@ -1,0 +1,14 @@
+{
+  "language_pair": "vag-eng",
+  "timestamp": "2025-09-24T14:06:30.340976",
+  "models": {
+    "llama-4-maverick-17b-128e-instruct": 39.15514844,
+    "qwen3-32b": 27.31336788,
+    "kimi-k2-instruct-0905": 26.67232028,
+    "gpt-oss-120b": 2.54182228,
+    "gemma2-9b-it": 21.758499679999996
+  },
+  "average_score": 23.488231712,
+  "best_model": "llama-4-maverick-17b-128e-instruct",
+  "best_score": 39.15514844
+}

@@ -1,0 +1,14 @@
+{
+  "language_pair": "ewe-eng",
+  "timestamp": "2025-09-24T14:06:29.952005",
+  "models": {
+    "qwen3-32b": 41.248976600000006,
+    "gpt-oss-120b": 55.032555999999985,
+    "kimi-k2-instruct-0905": 65.5775606,
+    "llama-4-maverick-17b-128e-instruct": 50.48887440000001,
+    "gemma2-9b-it": 40.312327599999996
+  },
+  "average_score": 50.53205904,
+  "best_model": "kimi-k2-instruct-0905",
+  "best_score": 65.5775606
+}

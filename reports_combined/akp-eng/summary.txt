@@ -1,0 +1,12 @@
+Translation Benchmark Results for akp-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+llama-4-maverick-17b-128e-instruct: 56.88%
+gpt-oss-120b: 51.93%
+qwen3-32b: 47.20%
+kimi-k2-instruct-0905: 37.30%
+gemma2-9b-it: 30.23%
+
+Best Model: llama-4-maverick-17b-128e-instruct (56.88%)
+Average Score: 44.71%

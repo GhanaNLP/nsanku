@@ -1,0 +1,14 @@
+{
+  "language_pair": "dag-eng",
+  "timestamp": "2025-09-24T14:06:30.753801",
+  "models": {
+    "gpt-oss-120b": 28.290865099999994,
+    "kimi-k2-instruct-0905": 48.8065714,
+    "qwen3-32b": 44.9148092,
+    "llama-4-maverick-17b-128e-instruct": 49.86034975999999,
+    "gemma2-9b-it": 38.525306
+  },
+  "average_score": 42.079580291999996,
+  "best_model": "llama-4-maverick-17b-128e-instruct",
+  "best_score": 49.86034975999999
+}

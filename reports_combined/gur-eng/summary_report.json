@@ -1,0 +1,14 @@
+{
+  "language_pair": "gur-eng",
+  "timestamp": "2025-09-24T14:06:30.078394",
+  "models": {
+    "kimi-k2-instruct-0905": 22.939671,
+    "llama-4-maverick-17b-128e-instruct": 9.492103646,
+    "gpt-oss-120b": 23.648358799999997,
+    "qwen3-32b": 21.593924559999998,
+    "gemma2-9b-it": 11.553560939999999
+  },
+  "average_score": 17.845523789199998,
+  "best_model": "gpt-oss-120b",
+  "best_score": 23.648358799999997
+}

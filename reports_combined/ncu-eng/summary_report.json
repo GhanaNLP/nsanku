@@ -1,0 +1,14 @@
+{
+  "language_pair": "ncu-eng",
+  "timestamp": "2025-09-24T14:06:30.600414",
+  "models": {
+    "gpt-oss-120b": 27.926532692,
+    "gemma2-9b-it": 31.320446280000002,
+    "kimi-k2-instruct-0905": 30.813270800000005,
+    "qwen3-32b": 36.536290799999996,
+    "llama-4-maverick-17b-128e-instruct": 36.329535740000004
+  },
+  "average_score": 32.585215262400006,
+  "best_model": "qwen3-32b",
+  "best_score": 36.536290799999996
+}

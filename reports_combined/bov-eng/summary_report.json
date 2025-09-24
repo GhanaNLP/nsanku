@@ -1,0 +1,14 @@
+{
+  "language_pair": "bov-eng",
+  "timestamp": "2025-09-24T14:06:30.652681",
+  "models": {
+    "gpt-oss-120b": 23.16265692,
+    "qwen3-32b": 30.104951000000003,
+    "llama-4-maverick-17b-128e-instruct": 31.850023659999998,
+    "gemma2-9b-it": 42.7861034,
+    "kimi-k2-instruct-0905": 31.036355800000003
+  },
+  "average_score": 31.788018156,
+  "best_model": "gemma2-9b-it",
+  "best_score": 42.7861034
+}

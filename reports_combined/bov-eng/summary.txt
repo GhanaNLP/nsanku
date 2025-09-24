@@ -1,0 +1,12 @@
+Translation Benchmark Results for bov-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+gemma2-9b-it: 42.79%
+llama-4-maverick-17b-128e-instruct: 31.85%
+kimi-k2-instruct-0905: 31.04%
+qwen3-32b: 30.10%
+gpt-oss-120b: 23.16%
+
+Best Model: gemma2-9b-it (42.79%)
+Average Score: 31.79%

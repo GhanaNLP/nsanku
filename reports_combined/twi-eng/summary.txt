@@ -1,0 +1,12 @@
+Translation Benchmark Results for twi-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 83.92%
+llama-4-maverick-17b-128e-instruct: 66.72%
+gemma2-9b-it: 65.75%
+qwen3-32b: 46.13%
+gpt-oss-120b: 9.38%
+
+Best Model: kimi-k2-instruct-0905 (83.92%)
+Average Score: 54.38%

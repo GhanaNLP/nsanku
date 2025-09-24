@@ -1,0 +1,12 @@
+Translation Benchmark Results for acd-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 40.57%
+gemma2-9b-it: 29.86%
+qwen3-32b: 29.01%
+llama-4-maverick-17b-128e-instruct: 28.00%
+gpt-oss-120b: 13.93%
+
+Best Model: kimi-k2-instruct-0905 (40.57%)
+Average Score: 28.27%

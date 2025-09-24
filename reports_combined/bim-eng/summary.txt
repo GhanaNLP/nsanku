@@ -1,0 +1,12 @@
+Translation Benchmark Results for bim-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 29.86%
+llama-4-maverick-17b-128e-instruct: 27.85%
+qwen3-32b: 27.12%
+gemma2-9b-it: 26.24%
+gpt-oss-120b: 6.25%
+
+Best Model: kimi-k2-instruct-0905 (29.86%)
+Average Score: 23.47%

@@ -1,0 +1,14 @@
+{
+  "language_pair": "sig-eng",
+  "timestamp": "2025-09-24T14:06:30.703451",
+  "models": {
+    "llama-4-maverick-17b-128e-instruct": 37.3515494,
+    "qwen3-32b": 39.9692888,
+    "kimi-k2-instruct-0905": 40.8160054,
+    "gemma2-9b-it": 7.55299448,
+    "gpt-oss-120b": 4.483488716
+  },
+  "average_score": 26.034665359199998,
+  "best_model": "kimi-k2-instruct-0905",
+  "best_score": 40.8160054
+}

@@ -1,0 +1,12 @@
+Translation Benchmark Results for vag-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+llama-4-maverick-17b-128e-instruct: 39.16%
+qwen3-32b: 27.31%
+kimi-k2-instruct-0905: 26.67%
+gemma2-9b-it: 21.76%
+gpt-oss-120b: 2.54%
+
+Best Model: llama-4-maverick-17b-128e-instruct (39.16%)
+Average Score: 23.49%

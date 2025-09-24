@@ -1,0 +1,12 @@
+Translation Benchmark Results for gjn-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+gemma2-9b-it: 52.20%
+kimi-k2-instruct-0905: 52.03%
+llama-4-maverick-17b-128e-instruct: 40.91%
+qwen3-32b: 40.38%
+gpt-oss-120b: 20.56%
+
+Best Model: gemma2-9b-it (52.20%)
+Average Score: 41.22%

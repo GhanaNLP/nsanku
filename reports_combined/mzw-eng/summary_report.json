@@ -1,0 +1,14 @@
+{
+  "language_pair": "mzw-eng",
+  "timestamp": "2025-09-24T14:06:29.824315",
+  "models": {
+    "gemma2-9b-it": 37.10680296,
+    "kimi-k2-instruct-0905": 51.61881020000001,
+    "gpt-oss-120b": 16.06483346,
+    "llama-4-maverick-17b-128e-instruct": 22.476735800000004,
+    "qwen3-32b": 37.7324764
+  },
+  "average_score": 32.99993176400001,
+  "best_model": "kimi-k2-instruct-0905",
+  "best_score": 51.61881020000001
+}

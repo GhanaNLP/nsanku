@@ -1,0 +1,12 @@
+Translation Benchmark Results for nzi-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+kimi-k2-instruct-0905: 24.46%
+qwen3-32b: 24.22%
+gemma2-9b-it: 17.39%
+llama-4-maverick-17b-128e-instruct: 16.47%
+gpt-oss-120b: 8.43%
+
+Best Model: kimi-k2-instruct-0905 (24.46%)
+Average Score: 18.19%

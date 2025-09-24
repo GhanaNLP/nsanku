@@ -1,0 +1,12 @@
+Translation Benchmark Results for ncu-eng
+Generated on: 2025-09-24 14:06:30
+
+Model Performance:
+qwen3-32b: 36.54%
+llama-4-maverick-17b-128e-instruct: 36.33%
+gemma2-9b-it: 31.32%
+kimi-k2-instruct-0905: 30.81%
+gpt-oss-120b: 27.93%
+
+Best Model: qwen3-32b (36.54%)
+Average Score: 32.59%

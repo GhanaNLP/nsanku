@@ -1,0 +1,14 @@
+{
+  "language_pair": "bim-eng",
+  "timestamp": "2025-09-24T14:06:30.133876",
+  "models": {
+    "gpt-oss-120b": 6.251538419999999,
+    "kimi-k2-instruct-0905": 29.864517000000003,
+    "qwen3-32b": 27.121423880000002,
+    "llama-4-maverick-17b-128e-instruct": 27.849564599999997,
+    "gemma2-9b-it": 26.2436764
+  },
+  "average_score": 23.466144059999998,
+  "best_model": "kimi-k2-instruct-0905",
+  "best_score": 29.864517000000003
+}
