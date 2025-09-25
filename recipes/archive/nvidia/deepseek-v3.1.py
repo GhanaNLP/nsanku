@@ -19,7 +19,7 @@ client = OpenAI(
 # Add utils to path
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
-from language_mapping import get_language_name, get_iso2_code, get_nllb_code
+from reporting import get_language_name
 
 # Initialize similarity model
 similarity_model_name = "sentence-transformers/all-mpnet-base-v2"
