@@ -37,7 +37,6 @@ As AI engineers work to bring Ghanaian languages into large language models, itâ
 ## Language Specific Results
 
 Detailed performance breakdown for each of the 43 evaluated languages.
-**Note:** Unusually high BLUE scores for some models are most likely not an indicator of their generic performance for the language. Further human evaluation is strongly recommended to confirm these results.
 
 <details>
 
